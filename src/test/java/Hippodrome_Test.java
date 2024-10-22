@@ -23,7 +23,6 @@ public class Hippodrome_Test {
 
     @Test
     void getHorsesTest() {
-        // Создание списка из 30 разных объектов Horse
         List<Horse> horses = new ArrayList<>();
         for (int i = 1; i <= 30; i++) {
             horses.add(new Horse("Horse" + i, i, i ));
@@ -49,15 +48,12 @@ public class Hippodrome_Test {
     }
     @Test
     void getWinnerTest() {
-        // Создаем несколько лошадей с разными значениями distance
         Horse horse1 = new Horse("Horse1", 10, 50);
         Horse horse2 = new Horse("Horse2", 10, 100); // эта лошадь с наибольшим расстоянием
         Horse horse3 = new Horse("Horse3", 10, 75);
 
-        // Создаем объект Hippodrome с этими лошадьми
         Hippodrome hippodrome = new Hippodrome(List.of(horse1, horse2, horse3));
 
-        // Проверяем, что метод getWinner возвращает лошадь с самым большим distance
         assertSame(horse2, hippodrome.getWinner());
     }
 }
