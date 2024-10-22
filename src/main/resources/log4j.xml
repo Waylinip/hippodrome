@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="ERROR">
+    <Appenders>
+        <!-- Настройка RollingFile Appender для ротации логов -->
+        <RollingFile name="LogToFile"
+                     fileName="logs/hippodrome.log"
+                     filePattern="logs/hippodrome-%d{yyyy-MM-dd}.log"
+                     ignoreExceptions="false">
+            <!-- Шаблон вывода сообщений в лог -->
+            <PatternLayout>
+                <Pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} %-5p %c{1}:%L - %m%n</Pattern>
+            </PatternLayout>
+            <!-- Политика ротации логов на основе времени -->
+            <Policies>
+                <TimeBasedTriggeringPolicy interval="1" modulate="true"/>
+            </Policies>
+            <!-- Стратегия для удаления логов старше 7 дней -->
+            <DefaultRolloverStrategy>
+                <Delete basePath="logs" maxDepth="2">
+                    <IfFileName glob="hippodrome-*.log"/>
+                    <IfLastModified age="7d"/>
+                </Delete>
+            </DefaultRolloverStrategy>
+        </RollingFile>
+    </Appenders>
+
+    <Loggers>
+        <!-- Уровень логирования для всего приложения -->
+        <Root level="ALL">
+            <AppenderRef ref="LogToFile"/>
+        </Root>
+    </Loggers>
+</Configuration>
+<!--        ‹RollingFile name="LogToFile" fileName="logs/hippodrome.log"|&ndash;&gt;-->
+<!--        filePattern="logs/hippodrome.%d{yyyy-MM-dd}.log"-->
+<!--        ignoreExceptions="false">-->
+<!--        «PatternLayoutpattern="%d%-5p%c:%n%n"/>-->
+<!--< TimeBasedTriggeringPolicy />-->
+<!--< DefaultRolloverStrategy>-->
+<!--‹Delete basePath="logs" maxDepth="2">-->
+<!--<IfFileName glob="hippodrome.*.log" />-->
+<!--<fLastModifiedage="7d"1>-->
+<!--</Delete> 1-->
+<!--        </DefaultRolloverStrategy>-->
+<!--        </RollingFile>-->
+<!--        </Appenders>-->
+<!--        ‹ Loggers>-->
+<!--        ‹ Root level="ALL">-->
+<!--        «AppenderRef ref="LogToFile"-->

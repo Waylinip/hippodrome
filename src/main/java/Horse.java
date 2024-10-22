@@ -1,3 +1,5 @@
+import java.util.Objects;
+
 import static java.util.Objects.isNull;
 
 public class Horse {
@@ -40,11 +42,27 @@ public class Horse {
         return distance;
     }
 
-    public void move() {
-        distance += speed * getRandomDouble(0.2, 0.9);
+   public void move() {
+         distance += speed * getRandomDouble(0.2, 0.9);
     }
 
+
     public static double getRandomDouble(double min, double max) {
+
         return (Math.random() * (max - min)) + min;
+    }
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Horse horse = (Horse) o;
+        return Double.compare(horse.speed, speed) == 0 &&
+                Double.compare(horse.distance, distance) == 0 &&
+                name.equals(horse.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, speed, distance);
     }
 }
